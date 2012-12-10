@@ -8,3 +8,13 @@ and is licensed as the awesome package itself.
 opensusegeeko.png is taken from
 http://en.opensuse.org/File:Opensuse-geeko.png
 and converted to 16x16 with convert
+
+
+By using combo of windows key [Mod4] and F1 together you can
+see the keys used by awesome. This is provided by the keydoc.lua
+module
+
+Background is set by the nitrogen package. By default it is set to 
+scale the background image of the openSUSE theme.
+
+
