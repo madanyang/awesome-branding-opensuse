@@ -121,7 +121,7 @@ end
 
   myawesome_menu = {
      { 'Restart Awesome', awesome.restart,              freedesktop.utils.lookup_icon({ icon = 'gtk-refresh'               }) },
-     { "Edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/opensuse.lua", freedesktop.utils.lookup_icon({ icon = 'package_settings' }) },
+     { "Edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua", freedesktop.utils.lookup_icon({ icon = 'package_settings' }) },
      { "manual", terminal .. " -e man awesome" }
   }
 
