@@ -27,16 +27,17 @@ require("beautiful")
 -- Notification library
 require("naughty")
 -- Freedesktop integration
+-- FIXME for 3,5 since freedesktop is not compatabible
 require("freedesktop.utils")
 require("freedesktop.menu")
 require("freedesktop.desktop")
+-- use local keyword for awesome 3.5 compatability
 -- calendar functions
-require("calendar2")
+local calendar2 = require("calendar2")
 -- Extra widgets
-require("vicious")
+local vicious = require("vicious")
 -- to create shortcuts help screen
--- local keydoc = require("keydoc")
-require("keydoc")
+local keydoc = require("keydoc")
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)

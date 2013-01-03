@@ -17,4 +17,6 @@ module
 Background is set by the nitrogen package. By default it is set to 
 scale the background image of the openSUSE theme.
 
+Calendar function is provided by the calendar2 module
+
 
