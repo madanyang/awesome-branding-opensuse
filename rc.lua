@@ -1,7 +1,7 @@
 --  rc.lua
 --  custom initialization for awesome windowmanager
 --
- -- Copyright (C) 2012 by Togan Muftuoglu toganm@opensuse.org
+ -- Copyright (C) 2012, 2013 by Togan Muftuoglu toganm@opensuse.org
  -- This program is free software; you can redistribute it and/or
  -- modify it under the terms of the GNU General Public License as
  -- published by the Free Software Foundation; either version 2, or (at
@@ -148,10 +148,54 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon), menu
 
 
 -- {{{ Wibox
+-- We need spacer and separator between the widgets
+spacer = widget({type = "textbox"})
+separator = widget({type = "textbox"})
+spacer.text = " "
+separator.text = "|"
+
+
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" })
 
 calendar2.addCalendarToWidget(mytextclock, "<span color='green'>%s</span>")
+
+
+mycpuwidget = widget({ type = "textbox" })
+vicious.register(mycpuwidget, vicious.widgets.cpu, "$1%")
+
+mybattery = widget({ type = "textbox"})
+vicious.register(mybattery, function(format, warg)
+  local args = vicious.widgets.bat(format, warg)
+  if args[2] < 50 then
+    args['{color}'] = 'red'
+  else
+    args['{color}'] = 'green'
+  end
+  return args
+end, '<span foreground="${color}">bat: $2% $3%</span>', 10, 'BAT0')
+
+-- Initialize widget
+mynetwidget = widget({ type = "textbox" })
+-- Register widget
+vicious.register(mynetwidget, vicious.widgets.net, "${eth0 down_kb} / ${eth0 up_kb}", 1)
+
+-- wifi
+-- provides wireless information for a requested interface
+-- takes the network interface as an argument, i.e. "wlan0"
+-- returns a table with string keys: {ssid}, {mode}, {chan}, {rate}, {link}, {linp} and {sign}
+
+-- Weather widget
+myweatherwidget = widget({ type = "textbox" })
+weather_t = awful.tooltip({ objects = { myweatherwidget },})
+vicious.register(myweatherwidget, vicious.widgets.weather,
+                function (widget, args)
+                    weather_t:set_text("City: " .. args["{city}"] .."\nWind: " .. args["{windkmh}"] .. "km/h " .. args["{wind}"] .. "\nSky: " .. args["{sky}"] .. "\nHumidity: " .. args["{humid}"] .. "%")
+                    return args["{tempc}"] .. "C"
+                end, 1800, "EDDN")
+                --'1800': check every 30 minutes.
+                --'EDDN': Nuermberg ICAO code.
+
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
@@ -231,7 +275,30 @@ for s = 1, screen.count() do
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
+        
         mytextclock,
+        separator,
+        spacer,
+        
+        mycpuwidget,
+        spacer,
+        separator,
+        spacer,
+        
+        mybattery,
+        spacer,
+        separator,
+        spacer,
+        
+        mynetwidget,
+        spacer,
+        separator,
+        spacer,
+        
+        myweatherwidget,
+        spacer,
+        separator,
+        spacer,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
