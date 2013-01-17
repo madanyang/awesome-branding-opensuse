@@ -28,9 +28,9 @@ require("beautiful")
 require("naughty")
 -- Freedesktop integration
 -- FIXME for 3,5 since freedesktop is not compatabible
-require("freedesktop.utils")
-require("freedesktop.menu")
-require("freedesktop.desktop")
+local freedesktop.utils = require("freedesktop.utils")
+local freedesktop.menu = require("freedesktop.menu")
+local freedesktop.desktop = require("freedesktop.desktop")
 -- use local keyword for awesome 3.5 compatability
 -- calendar functions
 local calendar2 = require("calendar2")
@@ -275,26 +275,26 @@ for s = 1, screen.count() do
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
-        
+
         mytextclock,
         separator,
         spacer,
-        
+
         mycpuwidget,
         spacer,
         separator,
         spacer,
-        
+
         mybattery,
         spacer,
         separator,
         spacer,
-        
+
         mynetwidget,
         spacer,
         separator,
         spacer,
-        
+
         myweatherwidget,
         spacer,
         separator,
