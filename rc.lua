@@ -28,9 +28,9 @@ require("beautiful")
 require("naughty")
 -- Freedesktop integration
 -- FIXME for 3,5 since freedesktop is not compatabible
-local freedesktop.utils = require("freedesktop.utils")
-local freedesktop.menu = require("freedesktop.menu")
-local freedesktop.desktop = require("freedesktop.desktop")
+require("freedesktop.utils")
+freedesktop.menu = require("freedesktop.menu")
+freedesktop.desktop = require("freedesktop.desktop")
 -- use local keyword for awesome 3.5 compatability
 -- calendar functions
 local calendar2 = require("calendar2")
