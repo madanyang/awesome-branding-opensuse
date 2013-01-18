@@ -197,6 +197,29 @@ vicious.register(myweatherwidget, vicious.widgets.weather,
                 --'EDDN': Nuermberg ICAO code.
 
 
+-- Keyboard map indicator and changer
+-- https://awesome.naquadah.org/wiki/Change_keyboard_maps
+-- default keyboard is us, second is german adapt to your needs
+--
+
+    kbdcfg = {}
+    kbdcfg.cmd = "setxkbmap"
+    kbdcfg.layout = { { "us", "" }, { "de", "" } }
+    kbdcfg.current = 1  -- us is our default layout
+    kbdcfg.widget = widget({ type = "textbox", align = "right" })
+    kbdcfg.widget.text = " " .. kbdcfg.layout[kbdcfg.current][1] .. " "
+    kbdcfg.switch = function ()
+       kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
+       local t = kbdcfg.layout[kbdcfg.current]
+       kbdcfg.widget.text = " " .. t[1] .. " "
+       os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
+    end
+
+    -- Mouse bindings
+    kbdcfg.widget:buttons(awful.util.table.join(
+        awful.button({ }, 1, function () kbdcfg.switch() end)
+    ))
+
 -- Create a systray
 mysystray = widget({ type = "systray" })
 
@@ -277,6 +300,11 @@ for s = 1, screen.count() do
         mylayoutbox[s],
 
         mytextclock,
+        separator,
+        spacer,
+
+        kbdcfg.widget,
+        spacer,
         separator,
         spacer,
 
