@@ -29,8 +29,8 @@ require("naughty")
 -- Freedesktop integration
 -- FIXME for 3,5 since freedesktop is not compatabible
 require("freedesktop.utils")
-freedesktop.menu = require("freedesktop.menu")
-freedesktop.desktop = require("freedesktop.desktop")
+require("freedesktop.menu")
+require("freedesktop.desktop")
 -- use local keyword for awesome 3.5 compatability
 -- calendar functions
 local calendar2 = require("calendar2")
@@ -173,7 +173,7 @@ vicious.register(mybattery, function(format, warg)
     args['{color}'] = 'green'
   end
   return args
-end, '<span foreground="${color}">bat: $2% $3%</span>', 10, 'BAT0')
+end, '<span foreground="${color}">bat: $2% $3h</span>', 10, 'BAT0')
 
 -- Initialize widget
 mynetwidget = widget({ type = "textbox" })
