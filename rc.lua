@@ -1,5 +1,5 @@
 --  rc.lua
---  custom initialization for awesome windowmanager
+--  custom initialization for awesome windowmanager 3.4.13
 --
  -- Copyright (C) 2012, 2013 by Togan Muftuoglu toganm@opensuse.org
  -- This program is free software; you can redistribute it and/or
