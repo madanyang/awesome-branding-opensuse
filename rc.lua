@@ -1,5 +1,5 @@
 --  rc.lua
---  custom initialization for awesome windowmanager
+--  custom initialization for awesome windowmanager 3.4.13
 --
  -- Copyright (C) 2012, 2013 by Togan Muftuoglu toganm@opensuse.org
  -- This program is free software; you can redistribute it and/or
@@ -29,8 +29,8 @@ require("naughty")
 -- Freedesktop integration
 -- FIXME for 3,5 since freedesktop is not compatabible
 require("freedesktop.utils")
-freedesktop.menu = require("freedesktop.menu")
-freedesktop.desktop = require("freedesktop.desktop")
+require("freedesktop.menu")
+require("freedesktop.desktop")
 -- use local keyword for awesome 3.5 compatability
 -- calendar functions
 local calendar2 = require("calendar2")
@@ -173,7 +173,7 @@ vicious.register(mybattery, function(format, warg)
     args['{color}'] = 'green'
   end
   return args
-end, '<span foreground="${color}">bat: $2% $3%</span>', 10, 'BAT0')
+end, '<span foreground="${color}">bat: $2% $3h</span>', 10, 'BAT0')
 
 -- Initialize widget
 mynetwidget = widget({ type = "textbox" })
@@ -196,6 +196,29 @@ vicious.register(myweatherwidget, vicious.widgets.weather,
                 --'1800': check every 30 minutes.
                 --'EDDN': Nuermberg ICAO code.
 
+
+-- Keyboard map indicator and changer
+-- https://awesome.naquadah.org/wiki/Change_keyboard_maps
+-- default keyboard is us, second is german adapt to your needs
+--
+
+    kbdcfg = {}
+    kbdcfg.cmd = "setxkbmap"
+    kbdcfg.layout = { { "us", "" }, { "de", "" } }
+    kbdcfg.current = 1  -- us is our default layout
+    kbdcfg.widget = widget({ type = "textbox", align = "right" })
+    kbdcfg.widget.text = " " .. kbdcfg.layout[kbdcfg.current][1] .. " "
+    kbdcfg.switch = function ()
+       kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
+       local t = kbdcfg.layout[kbdcfg.current]
+       kbdcfg.widget.text = " " .. t[1] .. " "
+       os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
+    end
+
+    -- Mouse bindings
+    kbdcfg.widget:buttons(awful.util.table.join(
+        awful.button({ }, 1, function () kbdcfg.switch() end)
+    ))
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
@@ -277,6 +300,11 @@ for s = 1, screen.count() do
         mylayoutbox[s],
 
         mytextclock,
+        separator,
+        spacer,
+
+        kbdcfg.widget,
+        spacer,
         separator,
         spacer,
 
