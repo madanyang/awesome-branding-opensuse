@@ -461,6 +461,10 @@ globalkeys = awful.util.table.join(
                   end,
                   awful.util.getdir("cache") .. "/ssh_history")
               end,"SSH login"),
+    -- This function depends on shutter program
+    -- by default it will save the file to /tmp/ directory
+    awful.key({ }, "Print", function () awful.util.spawn("shutter -f -e -o /tmp/awesome-%y-%m-%d_$w_$h.png") end,"Print Screen"),
+
 
     awful.key({ modkey }, "x",
               function ()
