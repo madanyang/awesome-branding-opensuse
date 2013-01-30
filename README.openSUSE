@@ -1,20 +1,57 @@
-Background picture is NatureSeries006.jpg from the
-desktop-data-openSUSE-extra-12.1-22.1.2.noarch. It has
-been named to background.jpg for easy access.
+openSUSE branding
+==================
 
 openSUSE theme is based on the default awesome theme
 and is licensed as the awesome package itself.
+
+Background picture is NatureSeries006.jpg from the
+desktop-data-openSUSE-extra-12.1-22.1.2.noarch. It has
+been named to background.jpg for easy access.
 
 opensusegeeko.png is taken from
 http://en.opensuse.org/File:Opensuse-geeko.png
 and converted to 16x16 with convert
 
 
+rc.lua
+==================
+
+The configuration for awesome window manager is established through the
+rc.lua file itself and by default it is installed in /etc/xdg/awesome
+directory. It is recommended you copy this to your
+$HOME/.config/awesome/ directory and make any changes.
+
+Configuration file is enhanced by other modules and samples for simple
+widgets are provided. It is not the intention that the configuration is
+complete, however it would enable an easy introduction to awesome window
+manager.
+
+You can use a personal theme (theme.lua) which is placed in your
+$HOME/.config/awesome/themes directory as the behaviour of the
+configuration is to enable personal theme if exits and if not fallback
+to openSUSE theme.
+
+In order to use the screenlock with the xscreensaver you need to install
+and configure the formentioned package.
+
+Keydoc module
+==================
 By using combo of windows key [Mod4] and F1 together you can
 see the keys used by awesome. This is provided by the keydoc.lua
 module
 
-Background is set by the nitrogen package. By default it is set to 
+Background
+==================
+
+Background is set by the nitrogen package. By default it is set to
 scale the background image of the openSUSE theme.
 
+Calendar
+==================
+Calendar function is provided by the calendar2 module
 
+Keyboard changer
+==================
+Comes with the default US and secondary DE (German) keyboard settings.
+Provides keyboard map indicator and changer. For other alternatives see
+https://awesome.naquadah.org/wiki/Change_keyboard_maps
