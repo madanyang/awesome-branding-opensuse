@@ -68,7 +68,7 @@ end
 -- Use personal theme if existing else goto default
 do
     local user_theme, ut
-    user_theme = awful.util.getdir("config") .. "/theme/theme.lua"
+    user_theme = awful.util.getdir("config") .. "/themes/theme.lua"
     ut = io.open(user_theme)
     if ut then
         io.close(ut)
@@ -201,6 +201,10 @@ vicious.register(mynetwidget, vicious.widgets.net, "${eth0 down_kb} / ${eth0 up_
 -- provides wireless information for a requested interface
 -- takes the network interface as an argument, i.e. "wlan0"
 -- returns a table with string keys: {ssid}, {mode}, {chan}, {rate}, {link}, {linp} and {sign}
+-- wifi = widget({ type = "textbox" })
+-- vicious.register(wifi, vicious.widgets.wifi, "${link}", 121, "wlan0")
+
+
 
 -- Weather widget
 myweatherwidget = widget({ type = "textbox" })
@@ -211,7 +215,7 @@ vicious.register(myweatherwidget, vicious.widgets.weather,
                     return args["{tempc}"] .. "C"
                 end, 1800, "EDDN")
                 --'1800': check every 30 minutes.
-                --'EDDN': Nuermberg ICAO code.
+                --'EDDN': Nuernberg ICAO code.
 
 
 -- Keyboard map indicator and changer
@@ -339,6 +343,11 @@ for s = 1, screen.count() do
         spacer,
         separator,
         spacer,
+
+        -- wifi,
+        -- spacer,
+        -- separator,
+        -- spacer,
 
         myweatherwidget,
         spacer,
