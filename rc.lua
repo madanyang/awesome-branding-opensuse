@@ -74,14 +74,10 @@ do
         io.close(ut)
         beautiful.init(user_theme)
     else
-        print("Theme doesn't exist, falling back to opeSUSE")
+        print("Personal theme doesn't exist, falling back to openSUSE")
         beautiful.init("/usr/share/awesome/themes/openSUSE/theme.lua")
     end
 end
-
--- beautiful.init("/usr/share/awesome/themes/openSUSE/theme.lua")
-
-
 
 
 -- This is used later as the default terminal and editor to run.
