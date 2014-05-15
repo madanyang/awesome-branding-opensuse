@@ -129,8 +129,8 @@ end
   mysystem_menu = {
       { 'Lock Screen',     'xscreensaver-command -lock', freedesktop.utils.lookup_icon({ icon = 'system-lock-screen'        }) },
       { 'Logout',           awesome.quit,                freedesktop.utils.lookup_icon({ icon = 'system-log-out'            }) },
-      { 'Reboot System',   'xdg-su -c "shutdown -r now"',   freedesktop.utils.lookup_icon({ icon = 'reboot-notifier'           }) },
-      { 'Shutdown System', 'xdg-su -c "shutdown -h now"',   freedesktop.utils.lookup_icon({ icon = 'system-shutdown'           }) }
+      { 'Reboot System',   'systemctl reboot',   freedesktop.utils.lookup_icon({ icon = 'reboot-notifier'           }) },
+      { 'Shutdown System', 'systemctl poweroff',   freedesktop.utils.lookup_icon({ icon = 'system-shutdown'           }) }
    }
 
   myawesome_menu = {
